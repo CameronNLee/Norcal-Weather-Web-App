@@ -1,0 +1,14 @@
+body {
+  min-height: 100vh;
+}
+
+top-half {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+bottom-half {
+  font-family: 'Saira Extra Condensed', sans-serif; 
+}
+
+main {
+}
