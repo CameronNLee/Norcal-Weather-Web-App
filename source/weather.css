@@ -86,3 +86,24 @@ main {
     border: none;
     background-color: #7B92D5;
 }
+
+.weather-and-doppler-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.weather {
+    flex-direction: column;
+}
+
+.fewclouds-day {
+    padding-top: 50px;
+    width: 100%;
+    margin-left: 50%;
+}
+
+/* hide this on mobile-view */
+.doppler {
+    display: none;
+}
