@@ -13,13 +13,24 @@
   <body>
 	  <top-half>
 		  <header>
-			  <p>Local Weather Six Hour Forecast</p>
+			  <!-- below div class only appears in mobile view. -->
+			  <div class="mobile-header-text"> 
+				  <p>Local Weather</p>
+				  <p>Six Hour Forecast</p>
+			  </div>
+			  <div class="non-mobile-header-text">
+				  <p>Local Weather Six Hour Forecast</p>
+			  </div>
 		  </header>
 
 		  <h2>
 			  <p>Northern California with doppler reader</p>
 		  </h2>
 		  
+		  <div class="forecast">
+			  <label>Forecast for</label>
+			  <input type="text">
+		  </div>
 	  </top-half>
 
 	  <bottom-half>
