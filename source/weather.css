@@ -49,7 +49,38 @@ main {
 }
 
 .forecast {
-  font-size: 22px;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 100%;
+}
+
+.forecast-text {
+  font-size: 22px;
+  text-align: left;
+  margin-left: 12%;
+  padding-bottom: 22px;
+}
+
+.container {
+    flex-direction: row;
+    align-content: flex-start;
+    
+}
+
+/* Hide this on non-mobile views using display: none */
+.input-mobile {
+    width: 55%;
+    margin-right: 20%;
+    padding-top: 10px;
+    border: none;
+    font-weight: lighter;
+    color: whitesmoke;
+    background-color: #2E3192;
+}
+
+.button-style {
+    height: 26px;
+    width: 15%;
+    color: #E6E5E3;
+    border: none;
+    background-color: #7B92D5;
 }
