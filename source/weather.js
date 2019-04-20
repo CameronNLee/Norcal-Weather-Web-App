@@ -68,20 +68,18 @@ function makeCorsRequest(url) {
       let sacLat = 38.5816;
       let sacLon = -121.478851;
       if (object["cod"] != "404") {
-      let desiredLocationLat = object["city"]["coord"]["lat"];
-      let desireLocationLon = object["city"]["coord"]["lon"];
-      //distance function checks if distance is less than or equals to 150 miles from Sacramento (our default location)
-      if (distance(sacLat, sacLon,desiredLocationLat,desireLocationLon, "M")) {
-        console.log(JSON.stringify(object, undefined, 2));  // print it out as a string, nicely formatted
-      } else { //distance is > 150 miles
-        //TODO - Handle this in some way. This is if a user doesn't enter location within 150 miles
-        console.log("Invalid location entered");
-      }
-
+        let desiredLocationLat = object["city"]["coord"]["lat"];
+        let desireLocationLon = object["city"]["coord"]["lon"];
+        //distance function checks if distance is less than or equals to 150 miles from Sacramento (our default location)
+        if (distance(sacLat, sacLon,desiredLocationLat,desireLocationLon, "M")) {
+            console.log(JSON.stringify(object, undefined, 2));  // print it out as a string, nicely formatted
+        } else { //distance is > 150 miles
+            //TODO - Handle this in some way. This is if a user doesn't enter location within 150 miles
+            console.log("Invalid location entered");
+        }
     } else { //if for some reason we end up with a code 404 from the API
         //TODO - Handle this in some way (Maybe let user know they entered an invalid location?)
     }
-     
   };
 
   xhr.onerror = function() {
