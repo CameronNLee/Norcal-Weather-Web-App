@@ -72,7 +72,11 @@ function makeCorsRequest(url) {
         let desireLocationLon = object["city"]["coord"]["lon"];
         //distance function checks if distance is less than or equals to 150 miles from Sacramento (our default location)
         if (distance(sacLat, sacLon,desiredLocationLat,desireLocationLon, "M")) {
-            console.log(JSON.stringify(object, undefined, 2));  // print it out as a string, nicely formatted
+            //console.log(JSON.stringify(object, undefined, 2));  //<---- Printing out the JSON in string format
+            let listOfTimestamps = object["list"]; //This list of timestamps contains weather info for each timestamp within the objects
+            for (var i = 0; i < 7; i++) { //The api gives us a list of 96 hours. We just want the first 7
+                console.log(listOfTimestamps[i]); //<--- these are the times and weather data we need
+            }
         } else { //distance is > 150 miles
             //TODO - Handle this in some way. This is if a user doesn't enter location within 150 miles
             console.log("Invalid location entered");
