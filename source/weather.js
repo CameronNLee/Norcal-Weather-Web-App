@@ -15,16 +15,18 @@ function onSubmitClick(){
     //Davis, CA, US for CityStateCountry
     //this is because for some reason OWM returns "no city found" for "Davis, CA" but
     //it has no problem with "Davis, CA," (comma at the end) 
-    var zipOrCityStateCountry = new RegExp (/[0-9]{5}(?:-[0-9]{4})?|([\w\s]+,\s*\w{2},\s*\w{2})/);
-    var cityState = new RegExp(/([\w\s]+,\s*\w{2})/);
-    var zipOrCityStateCountryMatcher = inputFieldText.match(zipOrCityStateCountry);
+
     var location = null;
+    var zipOrCityOrCityStateCountry = new RegExp (/[\w\s]+|[0-9]{5}(?:-[0-9]{4})?|([\w\s]+,\s*\w{2},\s*\w{2})/);
+    var cityState = new RegExp(/([\w\s]+,\s*\w{2})/);
+    var zipOrCityStateCountryMatcher = inputFieldText.match(zipOrCityOrCityStateCountry);
+
     //Reason I do this nested loop is because there's no need to match twice. We just have to hope a user types in
     //ZIP or CITY, ST, CC. Otherwise, if user types just CITY, ST, we can just match separately for that because of
     //OWM's weird issue
+
     if (zipOrCityStateCountryMatcher != null) {
         location =  zipOrCityStateCountryMatcher[0];
-
     } else {
         var cityStateMatcher = inputFieldText.match(cityState);
         if (cityStateMatcher != null) {
