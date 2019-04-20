@@ -1,9 +1,8 @@
 "strict mode";
-//important
 //Open weather api key : 78b2b473ac33f10c8b07fb26657b5bc5
 
 function onSubmitClick(){
-    //Take whatever's in 
+    //Take whatever's in the textfield
     var inputFieldText = document.getElementById("locationInputField").value;
     //Regex sources: https://stackoverflow.com/questions/9686395/regular-expression-for-validating-city-state-zip
     //               https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s14.html
@@ -30,8 +29,6 @@ function onSubmitClick(){
         console.log("Invalid location entered");
     } else {
         var url = 'http://api.openweathermap.org/data/2.5/forecast/hourly?q=' + location + '&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5'
-        //and separate URL into http://api.openweathermap.org/data/2.5/forecast/hourly?q=PARSED VARIABLE,US&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5");
-        //API key might not work rn because it needs a couple hours to activate
         makeCorsRequest(url);
     }
 
@@ -62,8 +59,8 @@ function makeCorsRequest(url) {
   xhr.onload = function() {
       let responseStr = xhr.responseText;  // get the JSON string 
       let object = JSON.parse(responseStr);  // turn it into an object
+      /*This is where we will handle the response*/
       console.log(JSON.stringify(object, undefined, 2));  // print it out as a string, nicely formatted
-      return object;
   };
 
   xhr.onerror = function() {
