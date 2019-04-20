@@ -14,16 +14,16 @@ function onSubmitClick(){
     //
     var cityState = new RegExp(/([\w\s]+,\s*\w{2})/);
     var zip = new RegExp(/[0-9]{5}(?:-[0-9]{4})?/)
-
-    //console.log(zip.exec(inputFieldText));
     var matchZip = inputFieldText.match(zip);
     var matchCityState = inputFieldText.match(cityState);
     var location = null;
+
     if (matchZip != null) {
        var location =  matchZip[0];
     } else if (matchCityState != null){
         var location = matchCityState[0] + ',US';
     }
+
     if (location == null) {
         //TODO - Handle this in some way. This is if a user doesn't enter location
         console.log("Invalid location entered");
@@ -31,10 +31,6 @@ function onSubmitClick(){
         var url = 'http://api.openweathermap.org/data/2.5/forecast/hourly?q=' + location + '&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5'
         makeCorsRequest(url);
     }
-
-   
-
-    
 }
 
 
