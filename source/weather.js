@@ -43,7 +43,6 @@ function onSubmitClick(){
     }   
 }
 
-
 // Create the XHR object.
 function createCORSRequest(method, url) {
   let xhr = new XMLHttpRequest();
@@ -67,12 +66,12 @@ function makeCorsRequest(url) {
       let object = JSON.parse(responseStr);  // turn it into an object
       /*This is where we will handle the response*/
 
-      let davisLat = 38.5449;
-      let davisLon = -121.7405;
+      let sacLat = 38.5816;
+      let sacLon = -121.478851;
       let desiredLocationLat = object["city"]["coord"]["lat"];
       let desireLocationLon = object["city"]["coord"]["lon"];
-      //distance function checks if distance is less than or equals to 150 miles from Davis (our default location)
-      if (distance(davisLat, davisLon,desiredLocationLat,desireLocationLon, "M")) {
+      //distance function checks if distance is less than or equals to 150 miles from Sacramento (our default location)
+      if (distance(sacLat, sacLon,desiredLocationLat,desireLocationLon, "M")) {
         console.log(JSON.stringify(object, undefined, 2));  // print it out as a string, nicely formatted
       } else { //distance is > 150 miles
         //TODO - Handle this in some way. This is if a user doesn't enter location within 150 miles
@@ -140,4 +139,3 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 		return dist <= 150;
 	}
 }
-
