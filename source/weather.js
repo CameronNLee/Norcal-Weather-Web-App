@@ -22,8 +22,8 @@ function onSubmitClick(){
     var zipOrCityStateCountryMatcher = inputFieldText.match(zipOrCityOrCityStateCountry);
 
     //Reason I do this nested loop is because there's no need to match twice. We just have to hope a user types in
-    //ZIP or CITY, ST, CC. Otherwise, if user types just CITY, ST, we can just match separately for that because of
-    //OWM's weird issue
+    //ZIP or CITY, ST, CC or CITY. Otherwise, if user types just CITY, ST, we can just match separately for that because of
+    //OWM's weird issue with commas needing to be at the end of "CITY, ST"
 
     if (zipOrCityStateCountryMatcher != null) {
         location =  zipOrCityStateCountryMatcher[0];
@@ -35,7 +35,7 @@ function onSubmitClick(){
     }
 
     if (location == null) {
-        //TODO - Handle this in some way. This is if a user doesn't enter location
+        //TODO - Handle this in some way. This is if a user doesn't enter location in one of the formats above
         console.log("Invalid location entered");
     } else {
         var url = `http://api.openweathermap.org/data/2.5/forecast/hourly?q=${location}&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5`
@@ -65,9 +65,9 @@ function makeCorsRequest(url) {
       let responseStr = xhr.responseText;  // get the JSON string 
       let object = JSON.parse(responseStr);  // turn it into an object
       /*This is where we will handle the response*/
-
       let sacLat = 38.5816;
       let sacLon = -121.478851;
+      if (object["cod"] != "404") {
       let desiredLocationLat = object["city"]["coord"]["lat"];
       let desireLocationLon = object["city"]["coord"]["lon"];
       //distance function checks if distance is less than or equals to 150 miles from Sacramento (our default location)
@@ -77,6 +77,10 @@ function makeCorsRequest(url) {
         //TODO - Handle this in some way. This is if a user doesn't enter location within 150 miles
         console.log("Invalid location entered");
       }
+
+    } else { //if for some reason we end up with a code 404 from the API
+        //TODO - Handle this in some way (Maybe let user know they entered an invalid location?)
+    }
      
   };
 
