@@ -1,21 +1,45 @@
 "strict mode";
 //important
 //Open weather api key : 78b2b473ac33f10c8b07fb26657b5bc5
-//
+
 function onSubmitClick(){
     //Take whatever's in 
     var inputFieldText = document.getElementById("locationInputField").value;
+    //Regex sources: https://stackoverflow.com/questions/9686395/regular-expression-for-validating-city-state-zip
+    //               https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s14.html
+    //
+    //The cityState pattern finds patterns such as:
+    //Davis, CA or Davis,CA
+    //The zip pattern finds patterns such as:
+    //95616 or 99750-0077
+    //
+    var cityState = new RegExp(/([\w\s]+,\s*\w{2})/);
+    var zip = new RegExp(/[0-9]{5}(?:-[0-9]{4})?/)
 
-    //TODO parse inputFieldText and split up url. Where it says "Davis, CA" we will need to parse this out
-    //and separate URL into http://api.openweathermap.org/data/2.5/forecast/hourly?q=PARSED VARIABLE,US&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5");
-    //API key might not work rn because it needs a couple hours to activate
-    makeCorsRequest("http://api.openweathermap.org/data/2.5/forecast/hourly?q=Davis,CA,US&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5");
+    //console.log(zip.exec(inputFieldText));
+    var matchZip = inputFieldText.match(zip);
+    var matchCityState = inputFieldText.match(cityState);
+    var location = null;
+    if (matchZip != null) {
+       var location =  matchZip[0];
+    } else if (matchCityState != null){
+        var location = matchCityState[0] + ',US';
+    }
+    if (location == null) {
+        //TODO - Handle this in some way. This is if a user doesn't enter location
+        console.log("Invalid location entered");
+    } else {
+        var url = 'http://api.openweathermap.org/data/2.5/forecast/hourly?q=' + location + '&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5'
+        //and separate URL into http://api.openweathermap.org/data/2.5/forecast/hourly?q=PARSED VARIABLE,US&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5");
+        //API key might not work rn because it needs a couple hours to activate
+        makeCorsRequest(url);
+    }
+
+   
+
+    
 }
 
-
-
-
-// Do a CORS request to get Davis weather hourly forecast
 
 // Create the XHR object.
 function createCORSRequest(method, url) {
@@ -39,6 +63,7 @@ function makeCorsRequest(url) {
       let responseStr = xhr.responseText;  // get the JSON string 
       let object = JSON.parse(responseStr);  // turn it into an object
       console.log(JSON.stringify(object, undefined, 2));  // print it out as a string, nicely formatted
+      return object;
   };
 
   xhr.onerror = function() {
