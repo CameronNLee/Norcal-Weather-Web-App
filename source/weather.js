@@ -39,7 +39,6 @@ function onSubmitClick(){
     }
 
     if (location == null) {
-        //TODO - Handle this in some way. This is if a user doesn't enter location in one of the formats above
         document.getElementById("locationInputField").value = "Invalid location";
         console.log("Invalid location entered");
     } else {
@@ -79,13 +78,11 @@ function makeCorsRequest(url) {
         if (distance(sacLat, sacLon,desiredLocationLat,desireLocationLon, "M")) {
             modifyScreen(object["list"]);
         } else { //distance is > 150 miles
-            //TODO - Handle this in some way. This is if a user doesn't enter location within 150 miles
             document.getElementById("locationInputField").value = "Invalid location";
             console.log("Invalid location entered");
         }
     } else { //if for some reason we end up with a code 404 from the API
         document.getElementById("locationInputField").value = "Invalid location";
-        //TODO - Handle this in some way (Maybe let user know they entered an invalid location?)
     }
   };
 
