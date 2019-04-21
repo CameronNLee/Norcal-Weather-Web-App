@@ -235,7 +235,9 @@ function onDownArrowClick() {
 }
 
 var eventBottomHalf = document.getElementById("bottomHalf");
+var nonMobile = window.matchMedia("(min-width: 481px)") // in case viewport is resized
 eventBottomHalf.addEventListener("animationend", animationListener, false);
+nonMobile.addListener(viewChangeListener);
 
 function animationListener() {
     if (this.classList.contains("bottom-half-transform-reverse")) {
@@ -243,4 +245,27 @@ function animationListener() {
         this.classList.add("bottom-half");
     }
     
+}
+
+// Reset tophalf and bottomhalf to use default top-half and bottom-half classes
+// upon viewport switch to either tablet or web view.
+// This ensures that both non-mobile views are kept when interacting with
+// the css swipe animations in mobile-view.
+function viewChangeListener() {
+    if (this.matches) {
+        var topHalf = document.getElementById("topHalf");
+        var bottomHalf = document.getElementById("bottomHalf");
+        if (topHalf.classList.contains("top-half-transform-reverse")) {
+            topHalf.classList.remove("top-half-transform-reverse");
+            topHalf.classList.add("top-half");
+            bottomHalf.classList.remove("bottom-half-transform-reverse");
+            bottomHalf.classList.add("bottom-half");
+        }
+        else if (topHalf.classList.contains("top-half-transform")) {
+            topHalf.classList.remove("top-half-transform");
+            topHalf.classList.add("top-half");
+            bottomHalf.classList.remove("bottom-half-transform");
+            bottomHalf.classList.add("bottom-half");
+        }
+    }
 }
