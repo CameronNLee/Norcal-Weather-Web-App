@@ -174,3 +174,14 @@ function onDownArrowClick() {
     topHalf.classList.remove("top-half-transform");
     bottomHalf.classList.remove("bottom-half-transform");
 }
+
+var eventBottomHalf = document.getElementById("bottomHalf");
+eventBottomHalf.addEventListener("animationend", animationListener, false);
+
+function animationListener() {
+    if (this.classList.contains("bottom-half-transform-reverse")) {
+        this.classList.remove("bottom-half-transform-reverse");
+        this.classList.add("bottom-half");
+    }
+    
+}
