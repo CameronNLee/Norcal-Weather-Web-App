@@ -21,21 +21,27 @@ function onSubmitClick(){
     //it has no problem with "Davis, CA," (comma at the end) 
 
     var location = null;
-    var zipOrCityOrCityStateCountry = new RegExp (/[\w\s]+|[0-9]{5}(?:-[0-9]{4})?|([\w\s]+,\s*\w{2},\s*\w{2})/);
+    var zipOrCityStateCountry = new RegExp (/[0-9]{5}(?:-[0-9]{4})?|([\w\s]+,\s*\w{2},\s*\w{2})/ig);
     var cityState = new RegExp(/([\w\s]+,\s*\w{2})/);
-    var zipOrCityStateCountryMatcher = inputFieldText.match(zipOrCityOrCityStateCountry);
+    var city = new RegExp(/\b^(\w*[\w\s]\w*)\b/ig);
 
-    //Reason I do this nested loop is because there's no need to match twice. We just have to hope a user types in
-    //ZIP or CITY, ST, CC or CITY. Otherwise, if user types just CITY, ST, we can just match separately for that because of
-    //OWM's weird issue with commas needing to be at the end of "CITY, ST"
-
-    if (zipOrCityStateCountryMatcher != null) {
-        location =  zipOrCityStateCountryMatcher[0];
+    var cityMatcher = inputFieldText.match(city);
+    if (cityMatcher != null) {
+        var cityMatcher = inputFieldText.match(city);
+        location =  cityMatcher[0] + ',US';
     } else {
-        var cityStateMatcher = inputFieldText.match(cityState);
-        if (cityStateMatcher != null) {
-            location =  cityStateMatcher[0] + ',';
-        } 
+        var zipOrCityStateCountryMatcher = inputFieldText.match(zipOrCityOrCityStateCountry);
+        //Reason I do this nested loop is because there's no need to match twice. We just have to hope a user types in
+        //ZIP or CITY, ST, CC or CITY. Otherwise, if user types just CITY, ST, we can just match separately for that because of
+        //OWM's weird issue with commas needing to be at the end of "CITY, ST"
+        if (zipOrCityStateCountryMatcher != null) {
+            location =  zipOrCityStateCountryMatcher[0];
+        } else {
+            var cityStateMatcher = inputFieldText.match(cityState);
+            if (cityStateMatcher != null) {
+                location =  cityStateMatcher[0] + ',';
+            } 
+        }
     }
 
     if (location == null) {
@@ -68,14 +74,15 @@ function makeCorsRequest(url) {
   xhr.onload = function() {
       let responseStr = xhr.responseText;  // get the JSON string 
       let object = JSON.parse(responseStr);  // turn it into an object
+      console.log(object);
       /*This is where we will handle the response*/
-      let sacLat = 38.5816;
-      let sacLon = -121.478851;
+      let davisLat = 38.5449;
+      let davisLon = -121.740517;
       if (object["cod"] != "404") {
         let desiredLocationLat = object["city"]["coord"]["lat"];
         let desireLocationLon = object["city"]["coord"]["lon"];
         //distance function checks if distance is less than or equals to 150 miles from Sacramento (our default location)
-        if (distance(sacLat, sacLon,desiredLocationLat,desireLocationLon, "M")) {
+        if (distance(davisLat, davisLon,desiredLocationLat,desireLocationLon, 'M')) {
             modifyScreen(object["list"]);
         } else { //distance is > 150 miles
             document.getElementById("locationInputField").value = "Invalid location";
@@ -187,7 +194,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 		dist = dist * 180/Math.PI;
 		dist = dist * 60 * 1.1515;
 		if (unit=="K") { dist = dist * 1.609344 }
-		if (unit=="N") { dist = dist * 0.8684 }
+        if (unit=="N") { dist = dist * 0.8684 }
 		return dist <= 150;
 	}
 }
