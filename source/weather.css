@@ -63,6 +63,7 @@ body {
     }
 
     /* gradient not used for mobile */
+    /* on non-mobile views, use flex-direction: row */
     .bottom-half {
         display: none;
         flex-direction: column;
@@ -71,6 +72,30 @@ body {
         bottom: 100%;
         font-family: 'Saira Extra Condensed', sans-serif;
         /* background-image: linear-gradient(lightgray, white); */
+    }
+
+    /*On non-mobile views, use flex-direction: column*/
+    .bottom-item {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        font-weight: 300;
+        justify-content: space-around;
+    }
+    
+    .bottom-item-time {
+        font-size: 2em;
+        margin-top: 10%;
+    }
+    
+    .bottom-item-image {
+        display: block;
+        width: 20%;
+    }
+    
+    .bottom-item-temperature {
+        font-size: 6em;
+        margin-top: 3%;
     }
     
     .bottom-half-transform {
@@ -221,12 +246,6 @@ body {
         margin: auto;
     }
     
-    .hourly-forecast {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-    
     hr {
         margin-top: 5%;
         margin-bottom: 5%;
@@ -273,4 +292,277 @@ body {
             top: 100%;
         }
     }
+}
+
+@media (min-width: 481px) and (max-width: 790px) {
+
+    header {
+        text-align: center;
+        font-size: 2.8em;
+        color: white;
+        padding-top: 1.5em;
+        padding-bottom: 3%;
+        width: 100%;
+        line-height: 1.2;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: larger;
+        font-weight: 500;
+        color: #2D3091;
+        padding-bottom: 7%;
+        width: 100%;
+        margin-right: 2%;
+    }
+
+    .top-half {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        background-image: linear-gradient(#4980dc, #623b9c);
+        position: absolute;
+    }
+
+/*    .top-half-transform {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        background-image: linear-gradient(#4980dc, #623b9c);
+
+        position: absolute;
+        animation-name: swipe;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
+    }
+
+    .top-half-transform-reverse {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        background-image: linear-gradient(#4980dc, #623b9c);
+
+        position: absolute;
+        animation-name: swipe-reverse;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
+    }*/
+
+    /* gradient not used for mobile */
+    .bottom-half {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        bottom: 100%;
+        font-family: 'Saira Extra Condensed', sans-serif;
+        /* background-image: linear-gradient(lightgray, white); */
+    }
+
+/*    .bottom-half-transform {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        font-family: 'Saira Extra Condensed', sans-serif;
+        !* background-image: linear-gradient(lightgray, white); *!
+
+        animation-name: move-up;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
+    }
+
+    .bottom-half-transform-reverse {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        font-family: 'Saira Extra Condensed', sans-serif;
+        !* background-image: linear-gradient(lightgray, white); *!
+
+        animation-name: move-down;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
+    }*/
+
+    main {
+
+    }
+
+    /* For non-mobile views, set to be "display: none;" */
+    .mobile-header-text {
+        display: block;
+    }
+
+    .non-mobile-header-text {
+        display: none;
+    }
+
+    /* For non-mobile views: change flex-direction to column, and use flex-wrap */
+    .forecast {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .forecast-text {
+        font-size: 1.8em;
+        text-align: left;
+        margin-left: 13%;
+        padding-bottom: 22px;
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    /* Hide this on non-mobile views using display: none */
+    .input-mobile {
+        text-align: center;
+        font-size: x-large;
+        width: 54%;
+        margin-left: 13%;
+        height: 1.38em;
+        border: none;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-weight: 300;
+        color: white;
+        background-color: #2E3192;
+    }
+
+    .button-style {
+        width: 22%;
+        height: 1.8em;
+        text-align: center;
+        font-size: larger;
+        color: #E6E5E3;
+        border: none;
+        background-color: #7B92D5;
+    }
+
+    .weather-and-doppler-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .weather {
+        flex-direction: column;
+    }
+
+    .fewclouds-day {
+        padding-top: 50px;
+        padding-bottom: 30px;
+        width: 100%;
+
+    }
+
+    .time-and-temp {
+        display: flex;
+        flex-direction: row;
+        font-family: 'Saira Extra Condensed', sans-serif;
+        font-weight: 100;
+        line-height: 1.3;
+        text-align: center;
+        width: 100%;
+        padding-bottom: 2em;
+    }
+
+    .time {
+        flex-direction: column;
+        font-size: 3em;
+        margin-top: 10px;
+    }
+
+
+    .vertical-line {
+        color: black;
+        font-size: 7em;
+        font-weight: 100;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .temperature {
+        font-size: 7em;
+        margin-top: 4px;
+    }
+
+    /* hide this on mobile-view */
+    .doppler {
+        display: none;
+    }
+
+    .arrow-container {
+        width: 100%;
+        padding-bottom: 1.5em;
+        padding-top: 1.5em;
+    }
+
+    .arrow-img {
+        display: block;
+        width: 10%;
+        margin: auto;
+    }
+
+    .hourly-forecast {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    hr {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        color: black;
+        width: 99%;
+    }
+
+/*    @keyframes swipe {
+        from {
+            bottom: 0%;
+        }
+
+        to {
+            bottom: 100%;
+        }
+    }
+
+    @keyframes swipe-reverse {
+        from {
+            bottom: 100%;
+        }
+
+        to {
+            bottom: 0%;
+        }
+    }
+
+    @keyframes move-up {
+        from {
+            top: 100%;
+        }
+
+        to {
+            top: 0%;
+        }
+    }
+
+    @keyframes move-down {
+        from {
+            top: 0%;
+        }
+
+        to {
+            top: 100%;
+        }
+    }*/
 }
