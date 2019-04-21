@@ -274,7 +274,6 @@ function addToArray(newImage) {
 	}
 }
 
-
 function tryToGetImage(dateObj) {
 	let dateStr = dateObj.getUTCFullYear();
 	dateStr += String(dateObj.getUTCMonth() + 1).padStart(2, '0'); //January is 0!
@@ -301,6 +300,7 @@ function getTenImages() {
 	// if we try 150 images, and get one out of every 10, we should get enough
 	for (let i = 0; i < 150; i++) {
         newImage = tryToGetImage(dateObj);
+  
 		dateObj.setMinutes( dateObj.getMinutes()-1 ); // back in time one minute
 	}
 
