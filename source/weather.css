@@ -1,5 +1,5 @@
 body {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 @media (max-width: 480px) {
@@ -65,7 +65,7 @@ body {
         margin-left: 13%;
         padding-bottom: 22px;
     }
-    
+
     .input-container {
         display: flex;
         flex-direction: row;
@@ -111,7 +111,7 @@ body {
         padding-top: 50px;
         padding-bottom: 30px;
         width: 100%;
-        
+
     }
 
     .time-and-temp {
@@ -148,5 +148,16 @@ body {
     /* hide this on mobile-view */
     .doppler {
         display: none;
+    }
+    
+    .arrow-container {
+        width: 100%;
+        padding-bottom: 1.5em;
+    }
+    
+    .arrow-img {
+        display: block;
+        width: 10%;
+        margin: auto;
     }
 }
