@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<top-half>
+	<div class="top-half" id="topHalf">
 		<header>
 			<!-- below div class only appears in mobile view. -->
 			<div class="mobile-header-text">
@@ -55,14 +55,14 @@
 		</div>
 		
 		<div class="arrow-container">
-			<img class="arrow-img" src="../assets/upArrow.svg" alt="up arrow">
+			<img class="arrow-img" src="../assets/upArrow.svg" alt="up arrow" onclick="onUpArrowClick()">
 		</div>
-	</top-half>
+	</div>
 	
-	<bottom-half>
+	<div class="bottom-half" id="bottomHalf">
 
 		<div class="arrow-container">
-			<img class="arrow-img" src="../assets/downArrow.svg" alt="up arrow">
+			<img class="arrow-img" src="../assets/downArrow.svg" alt="up arrow" onclick="onDownArrowClick()">
 		</div>
 		
 		<p>Why hello there</p>
@@ -75,7 +75,7 @@
 		<hr>
 		<p>Why hello there</p>
 		<hr>
-	</bottom-half>
+	</div>
 	
 	<main></main>
 	<script src="weather.js"></script>

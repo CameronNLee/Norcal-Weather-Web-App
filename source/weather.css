@@ -24,23 +24,79 @@ body {
         margin-right: 2%;
     }
 
-    top-half {
+    .top-half {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
         font-family: 'IBM Plex Sans', sans-serif;
         color: white;
         background-image: linear-gradient(#4980dc, #623b9c);
+        position: absolute;
+    }
+    
+    .top-half-transform {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        background-image: linear-gradient(#4980dc, #623b9c);
+        
+        position: absolute;
+        animation-name: swipe;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
     }
 
+    .top-half-transform-reverse {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        background-image: linear-gradient(#4980dc, #623b9c);
+        
+        position: absolute;
+        animation-name: swipe-reverse;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
+    }
 
     /* gradient not used for mobile */
-    bottom-half {
+    .bottom-half {
         display: flex;
         flex-direction: column;
         width: 100%;
+        position: absolute;
+        bottom: 100%;
         font-family: 'Saira Extra Condensed', sans-serif;
         /* background-image: linear-gradient(lightgray, white); */
+    }
+    
+    .bottom-half-transform {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        font-family: 'Saira Extra Condensed', sans-serif;
+        /* background-image: linear-gradient(lightgray, white); */
+        
+        animation-name: move-up;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
+    }
+
+    .bottom-half-transform-reverse {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        font-family: 'Saira Extra Condensed', sans-serif;
+        /* background-image: linear-gradient(lightgray, white); */
+        
+        animation-name: move-down;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
     }
 
     main {
@@ -176,5 +232,45 @@ body {
         margin-bottom: 5%;
         color: black;
         width: 99%;
+    }
+    
+    @keyframes swipe {
+        from {
+            bottom: 0%;
+        }
+
+        to {
+            bottom: 100%;
+        }
+    }
+
+    @keyframes swipe-reverse {
+        from {
+            bottom: 100%;
+        }
+
+        to {
+            bottom: 0%;
+        }
+    }
+    
+    @keyframes move-up {
+        from {
+            top: 100%;
+        }
+
+        to {
+            top: 0%;
+        }
+    }
+
+    @keyframes move-down {
+        from {
+            top: 0%;
+        }
+
+        to {
+            top: 100%;
+        }
     }
 }
