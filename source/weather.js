@@ -105,13 +105,16 @@ function modifyScreen(listOfTimestamps){
         var d = new Date(0); 
         d.setUTCSeconds(utcSeconds);
         //Source: https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
-        time.textContent = d.toLocaleString('en-US', { hour: 'numeric', hour12: true });
-
+        if (i > 0) {
+            time.textContent = d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+        } else {
+            time.textContent = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
+        }
         let image = document.getElementById(`image-${i}`);
         //check what code we get, and change image accordingly
         
         let temp = document.getElementById(`temp-${i}`);
-        temp.textContent = listOfTimestamps[i]["main"]["temp"]+'°';
+        temp.textContent = Math.round(listOfTimestamps[i]["main"]["temp"])+'°';
     }
 }
 
