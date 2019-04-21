@@ -1,6 +1,10 @@
 "strict mode";
 //Open weather api key : 78b2b473ac33f10c8b07fb26657b5bc5
 
+/*This is the default location*/
+var url = `http://api.openweathermap.org/data/2.5/forecast/hourly?q=Davis,CA,US&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5`
+makeCorsRequest(url);
+
 function onSubmitClick(){
     //Take whatever's in the textfield
     var inputFieldText = document.getElementById("locationInputField").value;
@@ -92,11 +96,14 @@ function makeCorsRequest(url) {
   xhr.send();
 }
 
+var weatherCodeMap = {"clear sky day": "../assets/clearsky.svg", "broken clouds": "../assets/brokencloud.svg"
+                ,"clear sky night": "../assets/clear-night.svg", "few clouds day": "../assets/fewclouds-day.svg"
+                ,"few clouds night": "../assets/fewclouds-night.svg", "mist": "../assets/mist.svg" 
+                ,"rain day": "../assets/rain-day.svg","rain night": "../assets/rain-night.svg" 
+                ,"scattered clouds": "../assets/scatteredclouds.svg","shower rain": "../assets/showerrain.svg"
+                ,"snow": "../assets/snow.svg", "thunderstorm": "../assets/thunderstorms.svg"};
 
 function modifyScreen(listOfTimestamps){
-    let time = document.getElementById("time-");
-    let image = document.getElementById("image-");
-    let temp = document.getElementById("temp-");
     for (var i = 0; i < 6; i++) { //The api gives us a list of 96 hours. We just want the first 6
         console.log(listOfTimestamps[i]); //<--- these are the times and weather data we need
         let time = document.getElementById(`time-${i}`);
@@ -110,7 +117,35 @@ function modifyScreen(listOfTimestamps){
         } else {
             time.textContent = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
         }
+
         let image = document.getElementById(`image-${i}`);
+        var imageCode = listOfTimestamps[i]["weather"][0]["description"];
+        let timeCheck = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
+
+        /* Since there is day and night, we need to check timing
+           the code below probably could have been cleaned up,
+           but it shouldn't be too big of a deal :o */
+        if (imageCode == "clear sky") {
+            if (timeCheck >= 0 && timeCheck <= 12) { //day from 6 AM to 6 PM
+                imageCode = imageCode + " day";
+            } else { //night
+                imageCode = imageCode + " night";
+            }
+        } else if (imageCode == "few clouds") {
+            if (timeCheck >= 0 && timeCheck <= 12) { //day from 6 AM to 6 PM
+                imageCode = imageCode + " day";
+            } else { //night
+                imageCode = imageCode + " night";
+            }
+        } else if (imagecode == "rain") {
+            if (timeCheck >= 0 && timeCheck <= 12) { //day from 6 AM to 6 PM
+                imageCode = imageCode + " day";
+            } else { //night
+                imageCode = imageCode + " night";
+            }
+        }
+
+        image.src = weatherCodeMap[imageCode];
         //check what code we get, and change image accordingly
         
         let temp = document.getElementById(`temp-${i}`);
