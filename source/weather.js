@@ -73,10 +73,8 @@ function makeCorsRequest(url) {
         //distance function checks if distance is less than or equals to 150 miles from Sacramento (our default location)
         if (distance(sacLat, sacLon,desiredLocationLat,desireLocationLon, "M")) {
             //console.log(JSON.stringify(object, undefined, 2));  //<---- Printing out the JSON in string format
-            let listOfTimestamps = object["list"]; //This list of timestamps contains weather info for each timestamp within the objects
-            for (var i = 0; i < 7; i++) { //The api gives us a list of 96 hours. We just want the first 7
-                console.log(listOfTimestamps[i]); //<--- these are the times and weather data we need
-            }
+            //let listOfTimestamps = object["list"]; //This list of timestamps contains weather info for each timestamp within the objects
+            modifyScreen(object["list"]);
         } else { //distance is > 150 miles
             //TODO - Handle this in some way. This is if a user doesn't enter location within 150 miles
             console.log("Invalid location entered");
@@ -92,6 +90,29 @@ function makeCorsRequest(url) {
 
   // Actually send request to server
   xhr.send();
+}
+
+
+function modifyScreen(listOfTimestamps){
+    let time = document.getElementById("time-");
+    let image = document.getElementById("image-");
+    let temp = document.getElementById("temp-");
+    for (var i = 0; i < 6; i++) { //The api gives us a list of 96 hours. We just want the first 6
+        console.log(listOfTimestamps[i]); //<--- these are the times and weather data we need
+        let time = document.getElementById(`time-${i}`);
+        //Source: https://stackoverflow.com/questions/4631928/convert-utc-epoch-to-local-date
+        var utcSeconds = listOfTimestamps[i]["dt"];
+        var d = new Date(0); 
+        d.setUTCSeconds(utcSeconds);
+        //Source: https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+        time.textContent = d.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+
+        let image = document.getElementById(`image-${i}`);
+        //check what code we get, and change image accordingly
+        
+        let temp = document.getElementById(`temp-${i}`);
+        temp.textContent = listOfTimestamps[i]["main"]["temp"]+'°';
+    }
 }
 
 //MODIFIED A BIT -- Returns bool (dist <= 150) instead of the original distance
