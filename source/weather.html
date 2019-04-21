@@ -1,67 +1,86 @@
 <!doctype HTML>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
+<head>
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,300" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100, 200, 300, 500" rel="stylesheet"> 
-    <link rel="stylesheet" type="text/css" href="reset.css">
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100, 200, 300, 500" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="reset.css">
 	<link rel="stylesheet" type="text/css" href="weather.css">
-  </head>
+</head>
 
-  <body>
-	  <top-half>
-		  <header>
-			  <!-- below div class only appears in mobile view. -->
-			  <div class="mobile-header-text"> 
-				  <p>Local Weather</p>
-				  <p>Six Hour Forecast</p>
-			  </div>
-			  <div class="non-mobile-header-text">
-				  <p>Local Weather Six Hour Forecast</p>
-			  </div>
-		  </header>
-
-		  <h2>
-			  Northern California with doppler radar
-		  </h2>
-		  
-		  <div class="forecast">
-			  <div class="forecast-text">
-			  	  <p>Forecast for</p>
-			  </div>
-			  
-			  <div class="input-container">
-				  <input type="text" class="input-mobile" name="Davis, CA" id = "locationInputField">
-				  <button class="button-style" onclick="onSubmitClick()" id="button">submit</button>
-			  </div>
-			  <div class="weather-and-doppler-container">
-				  <div class="weather">
-					  <img class="fewclouds-day" src="../assets/fewclouds-day.svg" alt="fewclouds-day" />
-					  <div class="time-and-temp">
-						  <div class="time">
-							  <p>current</p>
-							  <p>12PM</p>
-						  </div>
-						  <label class="vertical-line">|</label>
-						  <label class="temperature">67°</label>
-					  </div>
-				  </div>
-				  <div class="doppler">
-					  <p>placeholder; this textshould not appear on mobile view</p>
-				  </div>
-			  </div>
-		  </div>
-	  </top-half>
-
-	  <bottom-half>
-	  </bottom-half>
-
-    <main></main>
-	<script src="weather.js"></script> 
-   </body>
+<body>
+	<div class="top-half" id="topHalf">
+		<header>
+			<!-- below div class only appears in mobile view. -->
+			<div class="mobile-header-text">
+				<p>Local Weather</p>
+				<p>Six Hour Forecast</p>
+			</div>
+			<div class="non-mobile-header-text">
+				<p>Local Weather Six Hour Forecast</p>
+			</div>
+		</header>
 	
+		<h2>
+			Northern California with doppler radar
+		</h2>
+	
+		<div class="forecast">
+			<div class="forecast-text">
+				<p>Forecast for</p>
+			</div>
+	
+			<div class="input-container">
+				<input type="text" class="input-mobile" name="Davis, CA" id = "locationInputField">
+				<button class="button-style" onclick="onSubmitClick()" id="button">submit</button>
+			</div>
+			<div class="weather-and-doppler-container">
+				<div class="weather">
+					<img class="fewclouds-day" src="../assets/fewclouds-day.svg" alt="fewclouds-day" />
+					<div class="time-and-temp">
+						<div class="time">
+							<p>current</p>
+							<p>12PM</p>
+						</div>
+						<label class="vertical-line">|</label>
+						<label class="temperature">67°</label>
+					</div>
+				</div>
+				<div class="doppler">
+					<p>placeholder; this textshould not appear on mobile view</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="arrow-container">
+			<img class="arrow-img" src="../assets/upArrow.svg" alt="up arrow" onclick="onUpArrowClick()">
+		</div>
+	</div>
+	
+	<div class="bottom-half" id="bottomHalf">
+
+		<div class="arrow-container">
+			<img class="arrow-img" src="../assets/downArrow.svg" alt="up arrow" onclick="onDownArrowClick()">
+		</div>
+		
+		<p>Why hello there</p>
+		<hr>
+		<p>Why hello there</p>
+		<hr>
+		<p>Why hello there</p>
+		<hr>
+		<p>Why hello there</p>
+		<hr>
+		<p>Why hello there</p>
+		<hr>
+	</div>
+	
+	<main></main>
+	<script src="weather.js"></script>
+</body>
+
 
 </html>
 
