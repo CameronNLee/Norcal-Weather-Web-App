@@ -104,6 +104,13 @@ var weatherCodeMap = {"clear sky day": "../assets/clearsky.svg", "broken clouds"
                 ,"scattered clouds": "../assets/scatteredclouds.svg","shower rain": "../assets/showerrain.svg"
                 ,"snow": "../assets/snow.svg", "thunderstorm": "../assets/thunderstorms.svg"};
 
+
+const dayTimes = new Set(["6 AM","7 AM","8 AM","9 AM","10 AM", "11 AM"
+                         ,"12 PM","1 PM","2 PM","3 PM","4 PM","5 PM", "6 PM"]);
+
+const nightTimes = new Set(["7 PM","8 PM","9 PM","10 PM","11 PM","12 AM"
+                         ,"1 AM","2 AM","3 AM","4 AM","5 AM"]);
+
 function modifyScreen(listOfTimestamps){
     for (var i = 0; i < 6; i++) { //The api gives us a list of 96 hours. We just want the first 6
         let time = document.getElementById(`time-${i}`);
@@ -112,7 +119,7 @@ function modifyScreen(listOfTimestamps){
         var d = new Date(0); 
         d.setUTCSeconds(utcSeconds);
         //Source: https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
-        if (i > 0) {
+        if (i > 0) { //we are past the first screen
             time.textContent = d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
         } else {
             time.textContent = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
@@ -123,15 +130,13 @@ function modifyScreen(listOfTimestamps){
         let timeCheck = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
 
         if (imageCode == "clear sky" || imageCode == "few clouds" || imagecode == "rain") {
-            if (timeCheck >= 0 && timeCheck <= 12) { //day from 6 AM to 6 PM
+            if (dayTimes.has(timeCheck)) {
                 imageCode = imageCode + " day";
-            } else { //night
+            } else if (nightTimes.has(timeCheck)) {
                 imageCode = imageCode + " night";
             }
         }
-
         image.src = weatherCodeMap[imageCode];
-        //check what code we get, and change image accordingly
         
         let temp = document.getElementById(`temp-${i}`);
         temp.textContent = Math.round(listOfTimestamps[i]["main"]["temp"])+'°';
