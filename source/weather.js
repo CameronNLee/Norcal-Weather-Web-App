@@ -260,8 +260,7 @@ function viewChangeListener() {
 /*Doppler stuff below here -- this is professor's code*/
 
 let imageArray = []  // global variable to hold stack of images for animation 
-let count = 0;          // global var
-
+let count = 0;       // global var
 
 function addToArray(newImage) {
 	if (count < 10) {
@@ -301,7 +300,7 @@ function getTenImages() {
 	let dateObj = new Date();  // defaults to current date and time
 	// if we try 150 images, and get one out of every 10, we should get enough
 	for (let i = 0; i < 150; i++) {
-		newImage = tryToGetImage(dateObj);
+        newImage = tryToGetImage(dateObj);
 		dateObj.setMinutes( dateObj.getMinutes()-1 ); // back in time one minute
 	}
 
