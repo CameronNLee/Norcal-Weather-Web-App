@@ -143,5 +143,45 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 		if (unit=="K") { dist = dist * 1.609344 }
 		if (unit=="N") { dist = dist * 0.8684 }
 		return dist <= 150;
+	}
+}
+
+// This function controls the swiping up animation for mobile-view
+function onUpArrowClick() {
+    var topHalf = document.getElementById("topHalf");
+    var bottomHalf = document.getElementById("bottomHalf");
+
+    // Here, we add the two classes so that the CSS animation plays for both
+    if (topHalf.classList.contains("top-half-transform-reverse")) {
+        topHalf.classList.remove("top-half-transform-reverse");
+        bottomHalf.classList.remove("bottom-half-transform-reverse");
     }
+    topHalf.classList.add("top-half-transform");
+    bottomHalf.classList.add("bottom-half-transform");
+    topHalf.classList.remove("top-half");
+    bottomHalf.classList.remove("bottom-half");
+}
+
+// This function controls the swiping down animation for mobile-view
+function onDownArrowClick() {
+    var topHalf = document.getElementById("topHalf");
+    var bottomHalf = document.getElementById("bottomHalf");
+
+    // Here, we add the two classes so that the CSS animation plays for both
+    topHalf.classList.add("top-half-transform-reverse");
+    bottomHalf.classList.add("bottom-half-transform-reverse");
+    
+    topHalf.classList.remove("top-half-transform");
+    bottomHalf.classList.remove("bottom-half-transform");
+}
+
+var eventBottomHalf = document.getElementById("bottomHalf");
+eventBottomHalf.addEventListener("animationend", animationListener, false);
+
+function animationListener() {
+    if (this.classList.contains("bottom-half-transform-reverse")) {
+        this.classList.remove("bottom-half-transform-reverse");
+        this.classList.add("bottom-half");
+    }
+    
 }

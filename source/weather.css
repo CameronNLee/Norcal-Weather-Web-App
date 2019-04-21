@@ -1,5 +1,5 @@
 body {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 @media (max-width: 480px) {
@@ -24,20 +24,79 @@ body {
         margin-right: 2%;
     }
 
-    top-half {
+    .top-half {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
         font-family: 'IBM Plex Sans', sans-serif;
         color: white;
         background-image: linear-gradient(#4980dc, #623b9c);
+        position: absolute;
+    }
+    
+    .top-half-transform {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        background-image: linear-gradient(#4980dc, #623b9c);
+        
+        position: absolute;
+        animation-name: swipe;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
     }
 
-
-    bottom-half {
+    .top-half-transform-reverse {
         display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        background-image: linear-gradient(#4980dc, #623b9c);
+        
+        position: absolute;
+        animation-name: swipe-reverse;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
+    }
+
+    /* gradient not used for mobile */
+    .bottom-half {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        bottom: 100%;
         font-family: 'Saira Extra Condensed', sans-serif;
-        background-image: linear-gradient(lightgray, white);
+        /* background-image: linear-gradient(lightgray, white); */
+    }
+    
+    .bottom-half-transform {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        font-family: 'Saira Extra Condensed', sans-serif;
+        /* background-image: linear-gradient(lightgray, white); */
+        
+        animation-name: move-up;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
+    }
+
+    .bottom-half-transform-reverse {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        font-family: 'Saira Extra Condensed', sans-serif;
+        /* background-image: linear-gradient(lightgray, white); */
+        
+        animation-name: move-down;
+        animation-fill-mode: forwards;
+        animation-duration: 1.2s;
     }
 
     main {
@@ -65,7 +124,7 @@ body {
         margin-left: 13%;
         padding-bottom: 22px;
     }
-    
+
     .input-container {
         display: flex;
         flex-direction: row;
@@ -111,7 +170,7 @@ body {
         padding-top: 50px;
         padding-bottom: 30px;
         width: 100%;
-        
+
     }
 
     .time-and-temp {
@@ -122,7 +181,7 @@ body {
         line-height: 1.3;
         text-align: center;
         width: 100%;
-        padding-bottom: 100px;
+        padding-bottom: 2em;
     }
 
     .time {
@@ -148,5 +207,70 @@ body {
     /* hide this on mobile-view */
     .doppler {
         display: none;
+    }
+    
+    .arrow-container {
+        width: 100%;
+        padding-bottom: 1.5em;
+        padding-top: 1.5em;
+    }
+    
+    .arrow-img {
+        display: block;
+        width: 10%;
+        margin: auto;
+    }
+    
+    .hourly-forecast {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    hr {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        color: black;
+        width: 99%;
+    }
+    
+    @keyframes swipe {
+        from {
+            bottom: 0%;
+        }
+
+        to {
+            bottom: 100%;
+        }
+    }
+
+    @keyframes swipe-reverse {
+        from {
+            bottom: 100%;
+        }
+
+        to {
+            bottom: 0%;
+        }
+    }
+    
+    @keyframes move-up {
+        from {
+            top: 100%;
+        }
+
+        to {
+            top: 0%;
+        }
+    }
+
+    @keyframes move-down {
+        from {
+            top: 0%;
+        }
+
+        to {
+            top: 100%;
+        }
     }
 }
