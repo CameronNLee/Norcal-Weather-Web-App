@@ -28,14 +28,14 @@
 		</h2>
 	
 		<div class="forecast">
-			<div class="forecast-text">
-				<p>Forecast for</p>
+			<div class="forecast-input-container">
+				<p class="forecast-text">Forecast for</p>
+				<div class="input-container">
+					<input type="text" class="input-field" name="Davis, CA" id = "locationInputField">
+					<button class="button-style" onclick="onSubmitClick()" id="button">submit</button>
+				</div>
 			</div>
 	
-			<div class="input-container">
-				<input type="text" class="input-mobile" name="Davis, CA" id = "locationInputField">
-				<button class="button-style" onclick="onSubmitClick()" id="button">submit</button>
-			</div>
 			<div class="weather-and-doppler-container">
 				<div class="weather">
 					<img class="current-image" src="../assets/fewclouds-day.svg" alt="fewclouds-day" />
@@ -49,51 +49,51 @@
 					</div>
 				</div>
 				<div class="doppler">
-					<p>placeholder; this textshould not appear on mobile view</p>
+					<img class="doppler" src="https://radar.weather.gov/ridge/Overlays/Topo/Short/DAX_Topo_Short.jpg">
 				</div>
 			</div>
 		</div>
-		
+	
 		<div class="arrow-container">
 			<img class="arrow-img" src="../assets/upArrow.svg" alt="up arrow" onclick="onUpArrowClick()">
 		</div>
 	</div>
 	
 	<div class="bottom-half" id="bottomHalf">
-
+	
 		<div class="arrow-container">
 			<img class="arrow-img" src="../assets/downArrow.svg" alt="up arrow" onclick="onDownArrowClick()">
 		</div>
-		
-        <div class="bottom-item">
-            <label class="bottom-item-time">1:00 pm</label>
-            <img class="bottom-item-image" src="../assets/scatteredclouds.svg" alt="few clouds day">
-            <label class="bottom-item-temperature">67°</label>
-        </div>
+	
+		<div class="bottom-item">
+			<label class="bottom-item-time">1:00 pm</label>
+			<img class="bottom-item-image" src="../assets/scatteredclouds.svg" alt="few clouds day">
+			<label class="bottom-item-temperature">67°</label>
+		</div>
 		<hr>
-        <div class="bottom-item">
-            <label class="bottom-item-time">2:00 pm</label>
-            <img class="bottom-item-image" src="../assets/showerrain.svg" alt="few clouds day">
-            <label class="bottom-item-temperature">68°</label>
-        </div>
-        <hr>
-        <div class="bottom-item">
-            <label class="bottom-item-time">3:00 pm</label>
-            <img class="bottom-item-image" src="../assets/fewclouds-day.svg" alt="few clouds day">
-            <label class="bottom-item-temperature">70°</label>
-        </div>
-        <hr>
-        <div class="bottom-item">
-            <label class="bottom-item-time">4:00 pm</label>
-            <img class="bottom-item-image" src="../assets/clearsky.svg" alt="few clouds day">
-            <label class="bottom-item-temperature">70°</label>
-        </div>
-        <hr>
-        <div class="bottom-item">
-            <label class="bottom-item-time">5:00 pm</label>
-            <img class="bottom-item-image" src="../assets/clearsky.svg" alt="few clouds day">
-            <label class="bottom-item-temperature">70°</label>
-        </div>
+		<div class="bottom-item">
+			<label class="bottom-item-time">2:00 pm</label>
+			<img class="bottom-item-image" src="../assets/showerrain.svg" alt="few clouds day">
+			<label class="bottom-item-temperature">68°</label>
+		</div>
+		<hr>
+		<div class="bottom-item">
+			<label class="bottom-item-time">3:00 pm</label>
+			<img class="bottom-item-image" src="../assets/fewclouds-day.svg" alt="few clouds day">
+			<label class="bottom-item-temperature">70°</label>
+		</div>
+		<hr>
+		<div class="bottom-item">
+			<label class="bottom-item-time">4:00 pm</label>
+			<img class="bottom-item-image" src="../assets/clearsky.svg" alt="few clouds day">
+			<label class="bottom-item-temperature">70°</label>
+		</div>
+		<hr>
+		<div class="bottom-item">
+			<label class="bottom-item-time">5:00 pm</label>
+			<img class="bottom-item-image" src="../assets/clearsky.svg" alt="few clouds day">
+			<label class="bottom-item-temperature">70°</label>
+		</div>
 	</div>
 	
 	<main></main>
