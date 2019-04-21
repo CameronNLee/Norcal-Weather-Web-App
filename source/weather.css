@@ -334,7 +334,7 @@ body {
     /* gradient not used for mobile */
     /* on non-mobile views, use flex-direction: row */
     .bottom-half {
-        display: flex;
+        display: none;
         flex-direction: row;
         width: 100%;
         font-family: 'Saira Extra Condensed', sans-serif;
