@@ -122,22 +122,7 @@ function modifyScreen(listOfTimestamps){
         var imageCode = listOfTimestamps[i]["weather"][0]["description"];
         let timeCheck = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
 
-        /* Since there is day and night, we need to check timing
-           the code below probably could have been cleaned up,
-           but it shouldn't be too big of a deal :o */
-        if (imageCode == "clear sky") {
-            if (timeCheck >= 0 && timeCheck <= 12) { //day from 6 AM to 6 PM
-                imageCode = imageCode + " day";
-            } else { //night
-                imageCode = imageCode + " night";
-            }
-        } else if (imageCode == "few clouds") {
-            if (timeCheck >= 0 && timeCheck <= 12) { //day from 6 AM to 6 PM
-                imageCode = imageCode + " day";
-            } else { //night
-                imageCode = imageCode + " night";
-            }
-        } else if (imagecode == "rain") {
+        if (imageCode == "clear sky" || imageCode == "few clouds" || imagecode == "rain") {
             if (timeCheck >= 0 && timeCheck <= 12) { //day from 6 AM to 6 PM
                 imageCode = imageCode + " day";
             } else { //night
