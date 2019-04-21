@@ -40,6 +40,7 @@ function onSubmitClick(){
 
     if (location == null) {
         //TODO - Handle this in some way. This is if a user doesn't enter location in one of the formats above
+        document.getElementById("locationInputField").value = "Invalid location";
         console.log("Invalid location entered");
     } else {
         var url = `http://api.openweathermap.org/data/2.5/forecast/hourly?q=${location}&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5`
@@ -76,14 +77,14 @@ function makeCorsRequest(url) {
         let desireLocationLon = object["city"]["coord"]["lon"];
         //distance function checks if distance is less than or equals to 150 miles from Sacramento (our default location)
         if (distance(sacLat, sacLon,desiredLocationLat,desireLocationLon, "M")) {
-            //console.log(JSON.stringify(object, undefined, 2));  //<---- Printing out the JSON in string format
-            //let listOfTimestamps = object["list"]; //This list of timestamps contains weather info for each timestamp within the objects
             modifyScreen(object["list"]);
         } else { //distance is > 150 miles
             //TODO - Handle this in some way. This is if a user doesn't enter location within 150 miles
+            document.getElementById("locationInputField").value = "Invalid location";
             console.log("Invalid location entered");
         }
     } else { //if for some reason we end up with a code 404 from the API
+        document.getElementById("locationInputField").value = "Invalid location";
         //TODO - Handle this in some way (Maybe let user know they entered an invalid location?)
     }
   };
@@ -105,7 +106,6 @@ var weatherCodeMap = {"clear sky day": "../assets/clearsky.svg", "broken clouds"
 
 function modifyScreen(listOfTimestamps){
     for (var i = 0; i < 6; i++) { //The api gives us a list of 96 hours. We just want the first 6
-        console.log(listOfTimestamps[i]); //<--- these are the times and weather data we need
         let time = document.getElementById(`time-${i}`);
         //Source: https://stackoverflow.com/questions/4631928/convert-utc-epoch-to-local-date
         var utcSeconds = listOfTimestamps[i]["dt"];
