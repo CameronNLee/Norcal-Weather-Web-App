@@ -512,8 +512,8 @@ body {
     img.doppler {
         position: absolute;
         width: 100%;
+        filter: grayscale(100%);
         clip-path: circle(40%);
-        border-radius: 50%;
         margin-top: 20%;
         bottom: 0;
         right: 0;
@@ -523,6 +523,8 @@ body {
       position: absolute;
       width: 100%;
       clip-path: circle(40%);
+      margin-bottom: 1.5em;
+      margin-right: 1.5em;
       bottom: 0;
       right: 0;
   }
@@ -750,7 +752,7 @@ body {
     .doppler {
         position: relative;
         display: flex;
-        width: 60em;
+        width: 80em;
         margin-top: 3em;
         margin-bottom: 5em;
         margin-left: 35em;
@@ -765,14 +767,18 @@ body {
         margin-top: 20%;
         bottom: 0;
         right: 0;
+
     }
 
     .doppler-gif {
         position: absolute;
         width: 50%;
         clip-path: circle(40%);
+        margin-top: 20%;
+        margin-bottom: 5em;
         bottom: 0;
         right: 0;
+        
     }
     .arrow-container {
         width: 0%;
