@@ -124,7 +124,8 @@ var weatherCodeMap = {"clear sky day": "../assets/clearsky.svg", "broken clouds"
                 ,"few clouds night": "../assets/fewclouds-night.svg", "mist": "../assets/mist.svg" 
                 ,"rain day": "../assets/rain-day.svg","rain night": "../assets/rain-night.svg" 
                 ,"scattered clouds": "../assets/scatteredclouds.svg","shower rain": "../assets/showerrain.svg"
-                ,"snow": "../assets/snow.svg", "thunderstorm": "../assets/thunderstorms.svg"};
+                ,"snow": "../assets/snow.svg", "thunderstorm": "../assets/thunderstorms.svg"
+                , "overcast clouds":"../assets/scatteredclouds.svg","few clouds":"../assets/scatteredclouds.svg"};
 
 
 const dayTimes = new Set(["6 AM","7 AM","8 AM","9 AM","10 AM", "11 AM"
