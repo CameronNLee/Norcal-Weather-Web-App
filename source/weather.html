@@ -26,7 +26,45 @@
 		<h2>
 			Northern California with doppler radar
 		</h2>
-	
+
+        <!-- CSS will hide entire div class if view doesn't match web view -->
+        <div class="forecast-web">
+            <div class="forecast-web-box">
+                <div class="forecast-input-container">
+                    <p class="forecast-text">Forecast for</p>
+                    <div class="input-container">
+                        <input type="text" value="Davis, CA" class="input-field" name="Davis, CA" id = "locationInputField">
+                        <button class="button-style" onclick="onSubmitClick()" id="button">submit</button>
+                    </div>
+                </div>
+
+                <div class="weather">
+
+                    <div class="time-and-temp">
+                        <div class="time">
+                            <p>current</p>
+                            <p id = "time-0">12PM</p>
+                        </div>
+
+                        <div>
+                            <img class="current-image" id = "image-0" src="../assets/fewclouds-day.svg" alt="current image" />
+                        </div>
+
+                        <label class="temperature" id = "temp-0">67°</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doppler">
+                <img class="doppler" src="http://radar.weather.gov/ridge/Overlays/Topo/Short/DAX_Topo_Short.jpg">
+                <img  id = "doppler-dax" class="doppler-gif"  src="">
+                <img class="doppler-gif" src="http://radar.weather.gov/ridge/Overlays/Cities/Short/DAX_City_Short.gif">
+
+            </div>
+        </div>
+
+        <!-- current forecast view for mobile and tablet -->
+        
 		<div class="forecast">
 			<div class="forecast-input-container">
 				<p class="forecast-text">Forecast for</p>
