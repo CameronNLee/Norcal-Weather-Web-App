@@ -1,9 +1,27 @@
 "strict mode";
 //Open weather api key : 78b2b473ac33f10c8b07fb26657b5bc5
 
-/*This is the default location*/
+let imageArray = []  // global variable to hold stack of images for animation 
+let count = 0;       // global var
+let dopplerCount = 0;
+getTenImages();
+animateDoppler ();
+
 var url = `http://api.openweathermap.org/data/2.5/forecast/hourly?q=Davis,CA,US&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5`
 makeCorsRequest(url);
+
+function dopplerCountFunction () {
+	dopplerCount+=1;
+	if (dopplerCount == 10) dopplerCount = 0
+	return dopplerCount;
+}
+
+function animateDoppler () {
+	setInterval( function() {
+        document.getElementById("doppler-dax").src = imageArray[dopplerCountFunction()].src;
+        //console.log(document.getElementById("doppler-dax").src);
+	}, 180);
+}
 
 function onSubmitClick(){
     //Take whatever's in the textfield
@@ -266,9 +284,6 @@ function viewChangeListener() {
 
 /*Doppler stuff below here -- this is professor's code*/
 
-let imageArray = []  // global variable to hold stack of images for animation 
-let count = 0;       // global var
-
 function addToArray(newImage) {
 	if (count < 10) {
 		newImage.id = "doppler_"+count;
@@ -313,4 +328,3 @@ function getTenImages() {
 
 }
 
-getTenImages();
