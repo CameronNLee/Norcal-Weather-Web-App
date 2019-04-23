@@ -43,26 +43,25 @@ function onSubmitClick(){
     var cityState = new RegExp(/([\w\s]+,\s*\w{2})/);
     var city = new RegExp(/\b^(\w*[\w\s]\w*)\b/ig);
     var sanJose = new RegExp(/\b^(\w*San Jose\w*)\b/ig);
-
-    var sanJoseMatcher = inputFieldText.match(sanJose);
-    if (sanJoseMatcher != null) {
+    var matcher = inputFieldText.match(sanJose);
+    if (matcher != null) {
         location = "94088";
     } else {
-        var cityMatcher = inputFieldText.match(city);
-        if (cityMatcher != null) {
-            var cityMatcher = inputFieldText.match(city);
-            location =  cityMatcher[0] + ',US';
+        matcher = inputFieldText.match(city);
+        if (matcher != null) {
+            matcher = inputFieldText.match(city);
+            location =  matcher[0] + ',US';
         } else {
-            var zipOrCityStateCountryMatcher = inputFieldText.match(zipOrCityOrCityStateCountry);
+             matcher = inputFieldText.match(zipOrCityStateCountry);
             //Reason I do this nested loop is because there's no need to match twice. We just have to hope a user types in
             //ZIP or CITY, ST, CC or CITY. Otherwise, if user types just CITY, ST, we can just match separately for that because of
             //OWM's weird issue with commas needing to be at the end of "CITY, ST"
-            if (zipOrCityStateCountryMatcher != null) {
-                location =  zipOrCityStateCountryMatcher[0];
+            if (matcher != null) {
+                location =  matcher[0];
             } else {
-                var cityStateMatcher = inputFieldText.match(cityState);
-                if (cityStateMatcher != null) {
-                    location =  cityStateMatcher[0] + ',';
+                matcher = inputFieldText.match(cityState);
+                if (matcher != null) {
+                    location =  matcher[0] + ',';
                 } 
             }
         }    
