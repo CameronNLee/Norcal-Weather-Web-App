@@ -1,2 +1,15 @@
 Adam Ali - 912316756
 Cameron Lee - 912940818
+
+Extra credit: We check for instance of san jose (ignoring case). So:
+
+San Jose
+san jose
+san jose, ca
+san jose, CA, US
+.
+.
+.
+etc
+
+We solve the issue with the API by making a request for zip code 94088 instead of san jose
