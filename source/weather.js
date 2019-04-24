@@ -167,7 +167,9 @@ function modifyScreen(listOfTimestamps){
         image.src = weatherCodeMap[imageCode];
         
         let temp = document.getElementById(`temp-${i}`);
+        let tempWeb = document.getElementById(`temp-web-${i}`)
         temp.textContent = Math.round(listOfTimestamps[i]["main"]["temp"])+'°';
+        tempWeb.textContent = Math.round(listOfTimestamps[i]["main"]["temp"])+'°';
     }
 }
 
