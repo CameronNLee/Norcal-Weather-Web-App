@@ -13,3 +13,5 @@ san jose, CA, US
 etc
 
 We solve the issue with the API by making a request for zip code 94088 instead of san jose
+
+P.S If we missed any weather code svgs mappings sorry!!

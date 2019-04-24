@@ -124,13 +124,26 @@ function makeCorsRequest(url) {
   xhr.send();
 }
 
-var weatherCodeMap = {"clear sky day": "../assets/clearsky.svg", "broken clouds": "../assets/brokencloud.svg"
-                ,"clear sky night": "../assets/clear-night.svg", "few clouds day": "../assets/fewclouds-day.svg"
-                ,"few clouds night": "../assets/fewclouds-night.svg", "mist": "../assets/mist.svg" 
-                ,"rain day": "../assets/rain-day.svg","rain night": "../assets/rain-night.svg" 
-                ,"scattered clouds": "../assets/scatteredclouds.svg","shower rain": "../assets/showerrain.svg"
-                ,"snow": "../assets/snow.svg", "thunderstorm": "../assets/thunderstorms.svg"
-                , "overcast clouds":"../assets/scatteredclouds.svg","few clouds":"../assets/scatteredclouds.svg"};
+var weatherCodeMap = {"clear sky day": "../assets/clearsky.svg"
+                    ,"clear sky night": "../assets/clear-night.svg"
+                    ,"broken clouds": "../assets/brokencloud.svg"
+                    ,"overcast clouds":"../assets/brokencloud.svg"
+                    ,"broken clouds: 51-84%": "../assets/brokencloud.svg"
+                    ,"overcast clouds: 85-100%":"../assets/brokencloud.svg"
+                    ,"scattered clouds": "../assets/scatteredclouds.svg"
+                    ,"scattered clouds: 25-50%" :  "../assets/scatteredclouds.svg"
+                    ,"few clouds day": "../assets/fewclouds-day.svg"
+                    ,"few clouds night": "../assets/fewclouds-night.svg"
+                    ,"few clouds: 11-25% day" : "../assets/fewclouds-day.svg"
+                    ,"few clouds: 11-25% night" : "../assets/fewclouds-day.svg"
+                    ,"mist": "../assets/mist.svg" 
+                    ,"rain day": "../assets/rain-day.svg"
+                    ,"rain night": "../assets/rain-night.svg" 
+                    ,"light rain day": "../assets/rain-day.svg"
+                    ,"light rain night": "../assets/rain-night.svg" 
+                    ,"snow": "../assets/snow.svg"
+                    ,"thunderstorm": "../assets/thunderstorms.svg"};
+
 
 
 const dayTimes = new Set(["6 AM","7 AM","8 AM","9 AM","10 AM", "11 AM"
@@ -157,7 +170,7 @@ function modifyScreen(listOfTimestamps){
         var imageCode = listOfTimestamps[i]["weather"][0]["description"];
         let timeCheck = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
 
-        if (imageCode == "clear sky" || imageCode == "few clouds" || imageCode == "rain") {
+        if (imageCode == "clear sky" || imageCode == "few clouds" || imageCode == "rain" || imageCode == "few clouds: 11-25%") {
             if (dayTimes.has(timeCheck)) {
                 imageCode = imageCode + " day";
             } else if (nightTimes.has(timeCheck)) {
