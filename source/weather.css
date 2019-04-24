@@ -466,7 +466,8 @@ body {
     .current-image {
         padding-top: 50px;
         padding-bottom: 30px;
-        width: 30vw;
+        width: 20vw;
+        margin-left: 3.5em;
 
     }
 
@@ -510,11 +511,8 @@ body {
         position: relative;
         display: flex;
         width: 60%;
-        margin-right: 10%;
-        margin-left: 5%;
         margin-bottom: 10%;
-      
-
+        margin-top: 20%;
     }
 
     img.doppler {
@@ -522,7 +520,6 @@ body {
         width: 100%;
         filter: grayscale(100%);
         clip-path: circle(40%);
-        margin-top: 20%;
         bottom: 0;
         right: 0;
     }
@@ -531,8 +528,8 @@ body {
       position: absolute;
       width: 100%;
       clip-path: circle(40%);
-      margin-bottom: 1.5em;
-      margin-right: 1.5em;
+      margin-bottom: 2em;
+      margin-right: 0.2em;
       bottom: 0;
       right: 0;
   }
@@ -752,12 +749,8 @@ body {
     .doppler {
         position: relative;
         display: flex;
-        width: 60%;
-        margin-right: 10%;
-        margin-left: 5%;
-        margin-bottom: 10%;
-
-
+        width: 75%;
+        margin-top: 20%;
     }
 
     img.doppler {
@@ -765,7 +758,6 @@ body {
         width: 100%;
         filter: grayscale(100%);
         clip-path: circle(40%);
-        margin-top: 20%;
         bottom: 0;
         right: 0;
     }
@@ -774,8 +766,6 @@ body {
         position: absolute;
         width: 100%;
         clip-path: circle(40%);
-        margin-bottom: 1.5em;
-        margin-right: 1.5em;
         bottom: 0;
         right: 0;
     }
