@@ -242,10 +242,6 @@ body {
         font-size: 7em;
         margin-top: 4px;
     }
-
-    .temperature-web {
-        display: none;
-    }
     /* hide this on mobile-view */
     .doppler {
         display: none;
@@ -501,10 +497,6 @@ body {
         font-size: 7em;
         font-family: 'Saira Extra Condensed', sans-serif;
     }
-    
-    .temperature-web {
-        display: none;
-    }
 
     /* hide this on mobile-view */
     .doppler {
@@ -732,12 +724,8 @@ body {
     .vertical-line {
         display: none;
     }
-
-    .temperature {
-        display: none;
-    }
     
-    .temperature-web {
+    .temperature {
         font-size: 7em;
         font-family: 'Saira Extra Condensed', sans-serif;
         font-weight: 100;
