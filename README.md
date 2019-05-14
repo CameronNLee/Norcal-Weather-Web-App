@@ -1,4 +1,4 @@
-# ECS-162-Assignment-3
+# Norcal Weather Web App
 
 Designs by Jamie Oka, implemented by Adam Ali and Cameron Lee
 
