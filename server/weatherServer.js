@@ -4,19 +4,20 @@ const express = require('express');
 const http = require('http');
 const APIrequest = require('request');
 const APIkey = "78b2b473ac33f10c8b07fb26657b5bc5";
+const unit = "imperial";
 // let url = "https://api.openweathermap.org/data/2.5/forecast/hourly?q=Davis,CA,US&units=imperial&APPID=" + APIkey;
-const url = "https://api.openweathermap.org/data/2.5/forecast/hourly?appid=" + APIkey;
-const port = 51490;
+let url = `https://api.openweathermap.org/data/2.5/forecast/hourly?appid=${APIkey}&units=${unit}&q=Davis,CA,US`;
+console.log(url);
+const port = 9000;
 
 
 // An object containing the data expressing the query to the OpenWeather API.
 // Below, gets stringified and put into the body of an HTTP PUT request.
 // This object holds these properties at declaration. Calls to queryHandler
 // will modify the q property to get weather info for different locations.
-let requestObject = {
-    "units": "imperial",
-    "q": ["Davis,CA,US"]
-};
+/*let requestObject = {
+    "q": "Davis,CA,US"
+};*/
 
 
 
@@ -25,15 +26,18 @@ let options = {
     method: "POST",
     headers: {"content-type": "application/json"},
     // will turn the given object into JSON
-    json: requestObject
+    // json: requestObject
 };
 
 function queryHandler(req, res, next) {
     let qObj = req.query;
-    console.log(qObj.json);
     if (qObj.location != undefined) {
         // replaces requestObject's q property with the one inside the input box.
-        options.json.q = [qObj.location];
+        url = `https://api.openweathermap.org/data/2.5/forecast/hourly?appid=${APIkey}&units=${unit}&q=${qObj.location}`;
+        console.log(url);
+        options.url = url;
+        // options.json.q = qObj.location;
+        // console.log(options.json.q);
         weatherAPI(res);
     } else {
         next();
@@ -55,10 +59,12 @@ function weatherAPI (res) {
                 console.log(APIresHead.error);
             }
             else {
+                let ugly = JSON.parse(APIresBody);
+                let pretty = JSON.stringify(ugly, undefined, 2);
                 console.log("JSON was:");
-                console.log(JSON.stringify(APIresBody, undefined, 2));
+                console.log(pretty);
                 // print it out as a string, nicely formatted
-                res.json(APIresBody);
+                res.json({"API request": "Success!"});
             }
         }
     }
