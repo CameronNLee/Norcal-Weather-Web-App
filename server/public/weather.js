@@ -25,7 +25,7 @@ function animateDoppler () {
 
 function onSubmitClick(){
     //Take whatever's in the textfield
-    var inputFieldText = document.getElementById("locationInputField").value;
+    let inputFieldText = document.getElementById("locationInputField").value;
 
     //Regex sources: https://stackoverflow.com/questions/9686395/regular-expression-for-validating-city-state-zip
     //               https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s14.html
@@ -38,12 +38,12 @@ function onSubmitClick(){
     //this is because for some reason OWM returns "no city found" for "Davis, CA" but
     //it has no problem with "Davis, CA," (comma at the end) 
 
-    var location = null;
-    var zipOrCityStateCountry = new RegExp (/[0-9]{5}(?:-[0-9]{4})?|([\w\s]+,\s*\w{2},\s*\w{2})/ig);
-    var cityState = new RegExp(/([\w\s]+,\s*\w{2})/);
-    var city = new RegExp(/\b^(\w*[\w\s]\w*)\b/ig);
-    var sanJose = new RegExp(/\b^(\w*San Jose\w*)\b/ig);
-    var matcher = inputFieldText.match(sanJose);
+    let location = null;
+    let zipOrCityStateCountry = new RegExp (/[0-9]{5}(?:-[0-9]{4})?|([\w\s]+,\s*\w{2},\s*\w{2})/ig);
+    let cityState = new RegExp(/([\w\s]+,\s*\w{2})/);
+    let city = new RegExp(/\b^(\w*[\w\s]\w*)\b/ig);
+    let sanJose = new RegExp(/\b^(\w*San Jose\w*)\b/ig);
+    let matcher = inputFieldText.match(sanJose);
     if (matcher != null) {
         location = "94088";
     } else {
@@ -71,7 +71,7 @@ function onSubmitClick(){
         document.getElementById("locationInputField").value = "Invalid location";
         console.log("Invalid location entered");
     } else {
-        var url = `weather?location=${location}`;
+        let url = `weather?location=${location}`;
         makeAjaxRequest(url);
     }   
 }
@@ -125,7 +125,7 @@ function makeAjaxRequest(url) {
   xhr.send();
 }
 
-var weatherCodeMap = {"clear sky day": "../assets/clearsky.svg"
+let weatherCodeMap = {"clear sky day": "../assets/clearsky.svg"
                     ,"clear sky night": "../assets/clear-night.svg"
                     ,"broken clouds": "../assets/brokencloud.svg"
                     ,"overcast clouds":"../assets/brokencloud.svg"
@@ -154,11 +154,11 @@ const nightTimes = new Set(["7 PM","8 PM","9 PM","10 PM","11 PM","12 AM"
                          ,"1 AM","2 AM","3 AM","4 AM","5 AM"]);
 
 function modifyScreen(listOfTimestamps){
-    for (var i = 0; i < 6; i++) { //The api gives us a list of 96 hours. We just want the first 6
+    for (let i = 0; i < 6; i++) { //The api gives us a list of 96 hours. We just want the first 6
         let time = document.getElementById(`time-${i}`);
         //Source: https://stackoverflow.com/questions/4631928/convert-utc-epoch-to-local-date
-        var utcSeconds = listOfTimestamps[i]["dt"];
-        var d = new Date(0); 
+        let utcSeconds = listOfTimestamps[i]["dt"];
+        let d = new Date(0);
         d.setUTCSeconds(utcSeconds);
         //Source: https://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
         if (i > 0) { //we are past the first screen
@@ -168,7 +168,7 @@ function modifyScreen(listOfTimestamps){
         }
 
         let image = document.getElementById(`image-${i}`);
-        var imageCode = listOfTimestamps[i]["weather"][0]["description"];
+        let imageCode = listOfTimestamps[i]["weather"][0]["description"];
         let timeCheck = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
 
         if (imageCode == "clear sky" || imageCode == "few clouds" || imageCode == "rain" || imageCode == "few clouds: 11-25%") {
@@ -220,11 +220,11 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 		return 0;
 	}
 	else {
-		var radlat1 = Math.PI * lat1/180;
-		var radlat2 = Math.PI * lat2/180;
-		var theta = lon1-lon2;
-		var radtheta = Math.PI * theta/180;
-		var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+		let radlat1 = Math.PI * lat1/180;
+		let radlat2 = Math.PI * lat2/180;
+		let theta = lon1-lon2;
+		let radtheta = Math.PI * theta/180;
+		let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
 		if (dist > 1) {
 			dist = 1;
 		}
@@ -239,8 +239,8 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 
 // This function controls the swiping up animation for mobile-view
 function onUpArrowClick() {
-    var topHalf = document.getElementById("topHalf");
-    var bottomHalf = document.getElementById("bottomHalf");
+    let topHalf = document.getElementById("topHalf");
+    let bottomHalf = document.getElementById("bottomHalf");
 
     // Here, we add the two classes so that the CSS animation plays for both
     if (topHalf.classList.contains("top-half-transform-reverse")) {
@@ -255,8 +255,8 @@ function onUpArrowClick() {
 
 // This function controls the swiping down animation for mobile-view
 function onDownArrowClick() {
-    var topHalf = document.getElementById("topHalf");
-    var bottomHalf = document.getElementById("bottomHalf");
+    let topHalf = document.getElementById("topHalf");
+    let bottomHalf = document.getElementById("bottomHalf");
 
     // Here, we add the two classes so that the CSS animation plays for both
     topHalf.classList.add("top-half-transform-reverse");
@@ -266,8 +266,8 @@ function onDownArrowClick() {
     bottomHalf.classList.remove("bottom-half-transform");
 }
 
-var eventBottomHalf = document.getElementById("bottomHalf");
-var nonMobile = window.matchMedia("(min-width: 481px)") // in case viewport is resized
+let eventBottomHalf = document.getElementById("bottomHalf");
+let nonMobile = window.matchMedia("(min-width: 481px)") // in case viewport is resized
 eventBottomHalf.addEventListener("animationend", animationListener, false);
 nonMobile.addListener(viewChangeListener);
 
@@ -285,8 +285,8 @@ function animationListener() {
 // the css swipe animations in mobile-view.
 function viewChangeListener() {
     if (this.matches) {
-        var topHalf = document.getElementById("topHalf");
-        var bottomHalf = document.getElementById("bottomHalf");
+        let topHalf = document.getElementById("topHalf");
+        let bottomHalf = document.getElementById("bottomHalf");
         if (topHalf.classList.contains("top-half-transform-reverse")) {
             topHalf.classList.remove("top-half-transform-reverse");
             topHalf.classList.add("top-half");
