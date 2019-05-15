@@ -689,6 +689,7 @@ body {
     .current-image {
         width: 100%;
         max-width: 20em;
+        padding-left: 3em;
         padding-right: 3em;
         order: 2;
     }
