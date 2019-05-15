@@ -3,16 +3,18 @@
 const express = require('express');
 const http = require('http');
 const APIrequest = require('request');
-const APIkey = "78b2b473ac33f10c8b07fb26657b5bc5";  // ADD API KEY HERE
-const url = "https://api.openweathermap.org/data/2.5/forecast/hourly?q=Davis,CA,US&units=imperial&APPID=" + APIkey;
+const APIkey = "78b2b473ac33f10c8b07fb26657b5bc5";
+// let url = "https://api.openweathermap.org/data/2.5/forecast/hourly?q=Davis,CA,US&units=imperial&APPID=" + APIkey;
+const url = "https://api.openweathermap.org/data/2.5/forecast/hourly?appid=" + APIkey;
 const port = 51490;
 
 
 // An object containing the data expressing the query to the OpenWeather API.
 // Below, gets stringified and put into the body of an HTTP PUT request.
+// This object holds these properties at declaration. Calls to queryHandler
+// will modify the q property to get weather info for different locations.
 let requestObject = {
-//    "source": "en",
-//    "target": "ja",
+    "units": "imperial",
     "q": ["Davis,CA,US"]
 };
 
@@ -28,10 +30,10 @@ let options = {
 
 function queryHandler(req, res, next) {
     let qObj = req.query;
-    console.log(qObj);
-    if (qObj != undefined) {
+    console.log(qObj.json);
+    if (qObj.location != undefined) {
         // replaces requestObject's q property with the one inside the input box.
-        requestObject.q = [qObj.q];
+        options.json.q = [qObj.location];
         weatherAPI(res);
     } else {
         next();
