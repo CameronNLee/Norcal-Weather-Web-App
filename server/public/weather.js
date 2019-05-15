@@ -1,14 +1,14 @@
 "strict mode";
 //Open weather api key : 78b2b473ac33f10c8b07fb26657b5bc5
 
-let imageArray = []  // global variable to hold stack of images for animation 
+let imageArray = [];  // global variable to hold stack of images for animation
 let count = 0;       // global var
 let dopplerCount = 0;
 getTenImages();
 animateDoppler ();
 
-var url = `http://api.openweathermap.org/data/2.5/forecast/hourly?q=Davis,CA,US&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5`
-makeCorsRequest(url);
+let url = "weather?location=Davis,CA,US";
+makeAjaxRequest(url);
 
 function dopplerCountFunction () {
 	dopplerCount+=1;
@@ -71,25 +71,25 @@ function onSubmitClick(){
         document.getElementById("locationInputField").value = "Invalid location";
         console.log("Invalid location entered");
     } else {
-        var url = `http://api.openweathermap.org/data/2.5/forecast/hourly?q=${location}&units=imperial&APPID=78b2b473ac33f10c8b07fb26657b5bc5`
-        makeCorsRequest(url);
+        let url = "weather?location=${location}";
+        makeAjaxRequest(url);
     }   
 }
 
 // Create the XHR object.
-function createCORSRequest(method, url) {
+function createAjaxRequest(method, url) {
   let xhr = new XMLHttpRequest();
   xhr.open(method, url, true);  // call its open method
   return xhr;
 }
 
-// Make the actual CORS request.
-function makeCorsRequest(url) {
-  let xhr = createCORSRequest('GET', url);
+// Make the actual AJAX request.
+function makeAjaxRequest(url) {
+  let xhr = createAjaxRequest('GET', url);
 
-  // checking if browser does CORS
+  // checking if browser does AJAX.
   if (!xhr) {
-    alert('CORS not supported');
+    alert('Ajax not supported');
     return;
   }
 
@@ -117,7 +117,7 @@ function makeCorsRequest(url) {
   };
 
   xhr.onerror = function() {
-    alert('Woops, there was an error making the request.');
+    alert('Error: could not make the request.');
   };
 
   // Actually send request to server
