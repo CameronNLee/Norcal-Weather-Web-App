@@ -1,4 +1,4 @@
-"strict mode";
+"use strict";
 //Open weather api key : 78b2b473ac33f10c8b07fb26657b5bc5
 
 let imageArray = [];  // global variable to hold stack of images for animation
@@ -12,7 +12,7 @@ makeAjaxRequest(url);
 
 function dopplerCountFunction () {
 	dopplerCount+=1;
-	if (dopplerCount == 10) dopplerCount = 0
+	if (dopplerCount == 10) dopplerCount = 0;
 	return dopplerCount;
 }
 
@@ -267,7 +267,7 @@ function onDownArrowClick() {
 }
 
 let eventBottomHalf = document.getElementById("bottomHalf");
-let nonMobile = window.matchMedia("(min-width: 481px)") // in case viewport is resized
+let nonMobile = window.matchMedia("(min-width: 481px)"); // in case viewport is resized
 eventBottomHalf.addEventListener("animationend", animationListener, false);
 nonMobile.addListener(viewChangeListener);
 
@@ -321,7 +321,7 @@ function tryToGetImage(dateObj) {
 	dateStr += String(dateObj.getUTCMonth() + 1).padStart(2, '0'); //January is 0!
 	dateStr += String(dateObj.getUTCDate()).padStart(2, '0');
 
-	let timeStr = String(dateObj.getUTCHours()).padStart(2,'0')
+	let timeStr = String(dateObj.getUTCHours()).padStart(2,'0');
 	timeStr += String(dateObj.getUTCMinutes()).padStart(2,'0');
 
 	let filename = "DAX_"+dateStr+"_"+timeStr+"_N0R.gif";
@@ -329,10 +329,10 @@ function tryToGetImage(dateObj) {
 	newImage.onload = function () {
 		// console.log("got image "+filename);
 		addToArray(newImage);
-	}
+	};
 	newImage.onerror = function() {
 		// console.log("failed to load "+filename);
-	}
+	};
 	newImage.src = "https://radar.weather.gov/ridge/RadarImg/N0R/DAX/"+filename;
 }
 
@@ -341,7 +341,7 @@ function getTenImages() {
 	let dateObj = new Date();  // defaults to current date and time
 	// if we try 150 images, and get one out of every 10, we should get enough
 	for (let i = 0; i < 150; i++) {
-        newImage = tryToGetImage(dateObj);
+        tryToGetImage(dateObj);
   
 		dateObj.setMinutes( dateObj.getMinutes()-1 ); // back in time one minute
 	}
