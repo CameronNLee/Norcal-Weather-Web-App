@@ -139,6 +139,8 @@ let weatherCodeMap = {"clear sky day": "../assets/clearsky.svg"
                     ,"few clouds: 11-25% night" : "../assets/fewclouds-day.svg"
                     ,"mist": "../assets/mist.svg" 
                     ,"rain day": "../assets/rain-day.svg"
+                    ,"moderate rain day": "../assets/rain-day.svg"
+                    ,"moderate rain night": "../assets/rain-night.svg"
                     ,"rain night": "../assets/rain-night.svg" 
                     ,"light rain day": "../assets/rain-day.svg"
                     ,"light rain night": "../assets/rain-night.svg" 
@@ -172,7 +174,8 @@ function modifyScreen(listOfTimestamps){
         let timeCheck = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
 
         if (imageCode == "clear sky" || imageCode == "few clouds" ||
-            imageCode == "rain" || imageCode == "light rain" || imageCode == "few clouds: 11-25%") {
+            imageCode == "rain" || imageCode == "light rain" || imageCode == "moderate rain" ||
+            imageCode == "few clouds: 11-25%") {
             if (dayTimes.has(timeCheck)) {
                 imageCode = imageCode + " day";
             } else if (nightTimes.has(timeCheck)) {
