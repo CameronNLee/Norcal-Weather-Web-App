@@ -358,6 +358,10 @@ body {
     .bottom-item-image {
         display: block;
         width: 75%;
+
+        /* Prevents time text from misalignment due to image being too big. */
+        max-height: 50px;
+
         margin-top: 50%;
         margin-bottom: 50%;
     }
@@ -590,7 +594,10 @@ body {
     .bottom-item-image {
         display: block;
         max-width: 50%;
-        height: auto;
+
+        /* Prevents time text from misalignment due to image being too big. */
+        max-height: 50px;
+
         margin-top: 25%;
         margin-bottom: 25%;
     }
