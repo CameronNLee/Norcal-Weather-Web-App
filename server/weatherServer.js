@@ -60,9 +60,9 @@ function weatherAPI (res) {
                 console.log(APIresHead.error);
             }
             else {
-                console.log("JSON was:");
+                // console.log("JSON was:");
                 // Pretty print JSON to console.
-                console.log(JSON.stringify(JSON.parse(APIresBody), undefined, 2));
+                // console.log(JSON.stringify(JSON.parse(APIresBody), undefined, 2));
                 res.json(JSON.parse(APIresBody));
             }
         }

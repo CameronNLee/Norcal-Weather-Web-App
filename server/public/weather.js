@@ -71,7 +71,7 @@ function onSubmitClick(){
         document.getElementById("locationInputField").value = "Invalid location";
         console.log("Invalid location entered");
     } else {
-        let url = "weather?location=${location}";
+        var url = `weather?location=${location}`;
         makeAjaxRequest(url);
     }   
 }
@@ -83,11 +83,11 @@ function createAjaxRequest(method, url) {
   return xhr;
 }
 
-// Make the actual AJAX request.
+// Make the actual CORS request.
 function makeAjaxRequest(url) {
   let xhr = createAjaxRequest('GET', url);
 
-  // checking if browser does AJAX.
+  // checking if browser does CORS
   if (!xhr) {
     alert('Ajax not supported');
     return;
@@ -95,6 +95,7 @@ function makeAjaxRequest(url) {
 
   // Load some functions into response handlers.
   xhr.onload = function() {
+      console.log("Entered AJAX response handler.");
       let responseStr = xhr.responseText;  // get the JSON string 
       let object = JSON.parse(responseStr);  // turn it into an object
       console.log(object);
@@ -332,7 +333,7 @@ function tryToGetImage(dateObj) {
 	newImage.onerror = function() {
 		// console.log("failed to load "+filename);
 	}
-	newImage.src = "http://radar.weather.gov/ridge/RadarImg/N0R/DAX/"+filename;
+	newImage.src = "https://radar.weather.gov/ridge/RadarImg/N0R/DAX/"+filename;
 }
 
 
