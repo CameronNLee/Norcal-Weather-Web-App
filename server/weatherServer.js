@@ -29,6 +29,11 @@ let options = {
     // json: requestObject
 };
 
+// Serve homepage with the weather app page by default.
+function initialHandler(req, res) {
+    res.sendFile(__dirname + '/public/weather.html');
+}
+
 function queryHandler(req, res, next) {
     let qObj = req.query;
     if (qObj.location != undefined) {
@@ -78,9 +83,10 @@ function fileNotFound(req, res) {
 
 // put together the server pipeline
 const app = express();
+// const hiddenExtensions = { extensions: ['html', 'html'] };
 app.use(express.static('public'));  // can I find a static file?
-app.get('/', (req, res) => res.send('Moment of truth!'));
-app.get('/weather', queryHandler);   // if not, is it a valid query?
+app.get('/', initialHandler);
+app.get('/query', queryHandler);   // if not, is it a valid query?
 app.use( fileNotFound );            // otherwise not found
 // app.listen(port, function (){console.log('Listening on port ') + port;} );
 
