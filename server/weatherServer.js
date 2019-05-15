@@ -38,6 +38,7 @@ function queryHandler(req, res, next) {
         options.url = url;
         // options.json.q = qObj.location;
         // console.log(options.json.q);
+        console.log(`Querying the location ${qObj.location}.`);
         weatherAPI(res);
     } else {
         next();
@@ -59,12 +60,10 @@ function weatherAPI (res) {
                 console.log(APIresHead.error);
             }
             else {
-                let ugly = JSON.parse(APIresBody);
-                let pretty = JSON.stringify(ugly, undefined, 2);
                 console.log("JSON was:");
-                console.log(pretty);
-                // print it out as a string, nicely formatted
-                res.json({"API request": "Success!"});
+                // Pretty print JSON to console.
+                console.log(JSON.stringify(JSON.parse(APIresBody), undefined, 2));
+                res.json(JSON.parse(APIresBody));
             }
         }
     }
