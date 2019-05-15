@@ -7,7 +7,7 @@ let dopplerCount = 0;
 getTenImages();
 animateDoppler ();
 
-let url = "weather?location=Davis,CA,US";
+let url = "query?location=Davis,CA,US";
 makeAjaxRequest(url);
 
 function dopplerCountFunction () {
@@ -71,7 +71,7 @@ function onSubmitClick(){
         document.getElementById("locationInputField").value = "Invalid location";
         console.log("Invalid location entered");
     } else {
-        let url = `weather?location=${location}`;
+        let url = `query?location=${location}`;
         makeAjaxRequest(url);
     }   
 }
@@ -171,7 +171,8 @@ function modifyScreen(listOfTimestamps){
         let imageCode = listOfTimestamps[i]["weather"][0]["description"];
         let timeCheck = d.toLocaleString('en-US', { hour: 'numeric',  hour12: true });
 
-        if (imageCode == "clear sky" || imageCode == "few clouds" || imageCode == "rain" || imageCode == "few clouds: 11-25%") {
+        if (imageCode == "clear sky" || imageCode == "few clouds" ||
+            imageCode == "rain" || imageCode == "light rain" || imageCode == "few clouds: 11-25%") {
             if (dayTimes.has(timeCheck)) {
                 imageCode = imageCode + " day";
             } else if (nightTimes.has(timeCheck)) {
